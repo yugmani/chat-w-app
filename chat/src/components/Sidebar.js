@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar_header">
-        <Avatar />
+        <Avatar src="https://avatars.dicebear.com/api/human/2354.svg" />
         <div className="sidebar_headerRight">
           <IconButton>
             <DonutLargeIcon />
@@ -31,6 +31,9 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar_chats">
+        <SidebarChat addNewChat />
+        <SidebarChat />
+        <SidebarChat />
         <SidebarChat />
       </div>
     </div>
