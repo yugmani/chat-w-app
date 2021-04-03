@@ -10,6 +10,11 @@ import db from "../firebase";
 
 const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
+  const [seed, setSeed] = useState("");
+
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 5000));
+  }, []);
 
   useEffect(() => {
     db.collection("rooms").onSnapshot((snapshot) => {
@@ -20,13 +25,12 @@ const Sidebar = () => {
         }))
       );
     });
-    console.log(rooms, "my rooms");
   }, []);
 
   return (
     <div className="sidebar">
       <div className="sidebar_header">
-        <Avatar src="https://avatars.dicebear.com/api/human/2354.svg" />
+        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
         <div className="sidebar_headerRight">
           <IconButton>
             <DonutLargeIcon />
