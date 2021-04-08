@@ -3,19 +3,15 @@ import { Avatar, IconButton } from "@material-ui/core";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import SearchIcon from "@material-ui/icons/Search";
 import "./Sidebar.css";
 import SidebarChat from "./SidebarChat";
 import db from "../firebase";
-import { Unsubscribe } from "@material-ui/icons";
+import { SearchOutlined, Unsubscribe } from "@material-ui/icons";
+import { useStateValue } from "../StateProvider";
 
 const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
-  const [seed, setSeed] = useState("");
-
-  useEffect(() => {
-    setSeed(Math.floor(Math.random() * 5000));
-  }, []);
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     const unsubscribe = db.collection("rooms").onSnapshot((snapshot) => {
@@ -34,7 +30,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar_header">
-        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+        <Avatar src={user?.photoURL} />
         <div className="sidebar_headerRight">
           <IconButton>
             <DonutLargeIcon />
@@ -49,7 +45,7 @@ const Sidebar = () => {
       </div>
       <div className="sidebar_search">
         <div className="sidebar_searchContainer">
-          <SearchIcon />
+          <SearchOutlined />
           <input type="text" placeholder="Search or start a new chat" />
         </div>
       </div>

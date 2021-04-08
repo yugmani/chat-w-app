@@ -4,7 +4,6 @@ import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
-// import { StateProvider } from "./StateProvider";
 import { useStateValue } from "./StateProvider";
 
 function App() {
@@ -22,7 +21,7 @@ function App() {
                 <Sidebar />
                 <Chat />
               </Route>
-              <Route exact path="/">
+              <Route path="/">
                 <Sidebar />
               </Route>
             </Switch>
